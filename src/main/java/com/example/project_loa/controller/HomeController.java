@@ -14,7 +14,7 @@ public class HomeController {
 
         log.info("list.....");
 
-        return "main";
+        return "main/index";
     }
 
 }
