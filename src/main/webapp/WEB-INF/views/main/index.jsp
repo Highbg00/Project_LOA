@@ -11,6 +11,15 @@
     <title>Title</title>
 </head>
 <body>
+<form action="search" method="post">
+    <div class="main_logo">
+        <img src="@{/img/logo.png}"/>
 
+        <p style="margin-top: 50px;">
+            <input type="text" placeholder="캐릭터명을 입력하십시오." name="userid"/>
+            <a class='btn-fill' onclick="$('form').submit()">검색</a>
+        </p>
+    </div>
+</form>
 </body>
 </html>
