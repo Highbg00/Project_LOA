@@ -54,9 +54,34 @@
 </form>
 <div style="width: 1500px; border: 1px solid black; align: center;" class="tier">
   <div>
-    <img class="chacicon" src=${vo.characterImage}>
-    <p>${vo.title}  ${vo.characterName }</p>
-    <p>원정대 레벨 : ${vo.expeditionLevel }</p>
+    <img class="chacicon" src=${profile.characterImage}>
+    <p>${profile.title}  ${profile.characterName }</p>
+    <p>서버 : ${profile.serverName}</p>
+    <p>길드 : ${profile.guildName}</p>
+    <p>클래스 : ${profile.characterClassName}</p>
+    <p>전투 레벨 : ${profile.characterLevel}</p>
+    <p>원정대 레벨 : ${profile.expeditionLevel }</p>
+    <p>아이템 레벨 : ${profile.itemAvgLevel}</p>
+    <p>증명의 전장 등급 : ${profile.pvpGradeName}</p>
+    <p>영지명 : ${profile.townName}</p>
+    <div>
+      <p>전투 특성</p>
+      <c:forEach items="${statlist}" var="stat">
+        <p>${stat.type} : ${stat.value}</p>
+      </c:forEach>
+    </div>
+    <div>
+      <p>성향</p>
+      <c:forEach items="${tendencylist}" var="tendency">
+        <p>${tendency.type} : ${tendency.point}</p>
+      </c:forEach>
+    </div>
+    <div>
+      <p>장비</p>
+      <c:forEach items="${equipment}" var="equ">
+        <p><img src="${equ.icon}">${equ.name}</p>
+      </c:forEach>
+    </div>
   </div>
 </div>
 </body>

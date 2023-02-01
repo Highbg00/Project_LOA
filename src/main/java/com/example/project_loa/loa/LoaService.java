@@ -1,7 +1,10 @@
 package com.example.project_loa.loa;
 
-public interface LoaService {
-    ProfileVO Search(String userid);
+import org.json.JSONArray;
 
-    Profile2VO Search2(String userid);
+import java.util.List;
+
+public interface LoaService {
+    ProfileVO Profile(String userid);
+    JSONArray Equipment(String userid);
 }

@@ -3,17 +3,19 @@ package com.example.project_loa.loa;
 import com.example.project_loa.data.CommonData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import org.json.JSONArray;
 import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 @Service
 public class LoaServiceImpl implements LoaService{
     @Override
-    public ProfileVO Search(String userid) {
+    public ProfileVO Profile(String userid) {
         ObjectMapper mapper = new ObjectMapper();
 
         ProfileVO vo = null;
@@ -39,8 +41,6 @@ public class LoaServiceImpl implements LoaService{
                 response.append(inputLine);
             }
             br.close();
-            System.out.println(apiURL);
-            System.out.println(response.toString());
             String str = response.toString();
             vo = new Gson().fromJson(str,ProfileVO.class);
 
@@ -49,13 +49,14 @@ public class LoaServiceImpl implements LoaService{
         }
         return vo;
     }
+
     @Override
-    public Profile2VO Search2(String userid) {
+    public JSONArray Equipment(String userid) {
         ObjectMapper mapper = new ObjectMapper();
 
-        Profile2VO vo = null;
+        JSONArray vo = null;
         String header = "bearer " + CommonData.API_TOKEN;
-        String apiURL = "https://developer-lostark.game.onstove.com/armories/characters/"+ URLEncoder.encode(userid) +"/profiles";
+        String apiURL = "https://developer-lostark.game.onstove.com/armories/characters/"+ URLEncoder.encode(userid) +"/equipment";
 
         try{
             URL url = new URL(apiURL);
@@ -79,11 +80,12 @@ public class LoaServiceImpl implements LoaService{
             System.out.println(apiURL);
             System.out.println(response.toString());
             String str = response.toString();
-            vo = new Gson().fromJson(str,Profile2VO.class);
+            vo = new JSONArray(str);
 
         }catch (Exception e){
             System.out.println(e);
         }
         return vo;
     }
+
 }
