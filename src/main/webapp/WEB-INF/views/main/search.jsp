@@ -82,6 +82,12 @@
         <p><img src="${equ.icon}">${equ.name}</p>
       </c:forEach>
     </div>
+    <div>
+      <p>카드</p>
+      <c:forEach items="${card}" var="card">
+        <p><img src="${}"></p>
+      </c:forEach>
+    </div>
   </div>
 </div>
 </body>

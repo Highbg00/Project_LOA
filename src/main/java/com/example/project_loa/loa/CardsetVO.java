@@ -8,5 +8,4 @@ import java.util.List;
 public class CardsetVO {
     private List<CardVO> Cards;
     private List<CardeffectVO> Effects;
-    private List<ItemVO> Items;
 }

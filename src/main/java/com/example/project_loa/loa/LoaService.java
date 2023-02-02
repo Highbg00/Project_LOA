@@ -7,4 +7,6 @@ import java.util.List;
 public interface LoaService {
     ProfileVO Profile(String userid);
     JSONArray Equipment(String userid);
+
+    CardsetVO Cards(String userid);
 }
