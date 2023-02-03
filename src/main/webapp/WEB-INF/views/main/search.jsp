@@ -84,8 +84,9 @@
     </div>
     <div>
       <p>카드</p>
-      <c:forEach items="${card}" var="card">
-        <p><img src="${}"></p>
+      <c:forEach items="${cardset}" var="card">
+        <p><img src="${card.icon}"></p>
+        <p>${card.name} : ${card.awakeCount}각성</p>
       </c:forEach>
     </div>
   </div>

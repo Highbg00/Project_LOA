@@ -29,10 +29,13 @@ public class LoaController {
         List<EquipmentVO> equipmentList = new ArrayList<EquipmentVO>();
         List<Card2VO> cardlist = new ArrayList<Card2VO>();
         List<Cardeffect2VO> cardeffectlist = new ArrayList<Cardeffect2VO>();
+        List<Item2VO> items = new ArrayList<Item2VO>();
+        List<AvatarVO> avatarList = new ArrayList<AvatarVO>();
         String str = null;
         ProfileVO profile = service.Profile(userid);
-        JSONArray array = service.Equipment(userid);
+        JSONArray equip_array = service.Equipment(userid);
         CardsetVO cards = service.Cards(userid);
+        JSONArray avatar_array = service.Avatars(userid);
 
         profile2.setCharacterName(profile.getCharacterName());
         profile2.setCharacterImage(profile.getCharacterImage());
@@ -66,9 +69,14 @@ public class LoaController {
             tendencyList.add(i-1, tendency);
         }
 
-        for(int i = 0; i < array.length(); i++) {
-            EquipmentVO eq = new Gson().fromJson(array.get(i).toString(),EquipmentVO.class);
+        for(int i = 0; i < equip_array.length(); i++) {
+            EquipmentVO eq = new Gson().fromJson(equip_array.get(i).toString(),EquipmentVO.class);
             equipmentList.add(i,eq);
+        }
+
+        for(int i = 0; i < avatar_array.length(); i++) {
+            AvatarVO av = new Gson().fromJson(avatar_array.get(i).toString(),AvatarVO.class);
+            avatarList.add(i,av);
         }
 
         for(int i = 1; i <= cards.getCards().size(); i++){
@@ -92,13 +100,13 @@ public class LoaController {
             cardeffect2 = cards.getEffects().get(i-1);
             cardeffect.setIndex(cardeffect2.getIndex());
 
-            for (int y = 1; y <= 6; /*cards.getEffects().get(y).getItems().size();*/ y++){
-                List<Item2VO> items = new ArrayList<Item2VO>();
-                String qq = cardeffect2.getItems().get(y-1).getName();
-                cardeffect.setItems(items);
-                cardeffect.getItems().get(y-1).setName(qq);
-                cardeffect.getItems().get(y-1).setDescription(cardeffect2.getItems().get(y-1).getDescription());
+            for (int y = 1; y <= cards.getEffects().get(i-1).getItems().size(); y++){
+                Item2VO item = new Item2VO();
+                item.setName(cardeffect2.getItems().get(y-1).getName());
+                item.setDescription(cardeffect2.getItems().get(y-1).getDescription());
+                items.add(y-1,item);
             }
+            cardeffect.setItems(items);
             cardeffectlist.add(i-1,cardeffect);
         }
 
@@ -106,7 +114,9 @@ public class LoaController {
         model.addAttribute("statlist",statlist);
         model.addAttribute("tendencylist", tendencyList);
         model.addAttribute("equipment",equipmentList);
-
+        model.addAttribute("cardset",cardlist);
+        model.addAttribute("cardeffect",cardeffectlist);
+        model.addAttribute("avatar",avatarList);
         return "main/search";
     }
 }
