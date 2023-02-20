@@ -156,4 +156,40 @@ public class LoaServiceImpl implements LoaService{
         }
         return vo;
     }
+
+    @Override
+    public GemsVO Gems(String userid) {
+        ObjectMapper mapper = new ObjectMapper();
+
+        GemsVO vo = null;
+        String header = "bearer " + CommonData.API_TOKEN;
+        String apiURL = "https://developer-lostark.game.onstove.com/armories/characters/"+ URLEncoder.encode(userid) +"/gems";
+
+        try{
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("accept", "application/json");
+            con.setRequestProperty("authorization", header);
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if(responseCode==200) { // 정상 호출
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {  // 에러 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = br.readLine()) != null) {
+                response.append(inputLine);
+            }
+            br.close();
+            String str = response.toString();
+            vo = new Gson().fromJson(str,GemsVO.class);
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return vo;
+    }
 }

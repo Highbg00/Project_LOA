@@ -88,6 +88,26 @@
         <p><img src="${card.icon}"></p>
         <p>${card.name} : ${card.awakeCount}각성</p>
       </c:forEach>
+      <p>세트 효과</p>
+      <c:forEach items="${cardeffect}" var="cardef" varStatus="status">
+        <c:forEach items="${cardef.items}" var="item" varStatus="status2">
+          <p>${cardef.items.get(status2.index).name} : ${cardef.items.get(status2.index).description}</p>
+        </c:forEach>
+      </c:forEach>
+    </div>
+    <div>
+      <p>아바타</p>
+      <c:forEach items="${avatar}" var="ava">
+        <p><img src="${ava.icon}"></p>
+        <p>${ava.name}</p>
+      </c:forEach>
+    </div>
+    <div>
+      <p>보석</p>
+        <c:forEach items="${gemlist.gems}" var="jewel" varStatus="status3">
+          <p><img src="${jewel.icon}"> ${jewel.name}</p>
+          <p>${gemlist.effects.get(status3.index).name} : ${gemlist.effects.get(status3.index).description}</p>
+        </c:forEach>
     </div>
   </div>
 </div>

@@ -9,5 +9,5 @@ public interface LoaService {
     JSONArray Equipment(String userid);
     CardsetVO Cards(String userid);
     JSONArray Avatars(String userid);
-
+    GemsVO Gems(String userid);
 }

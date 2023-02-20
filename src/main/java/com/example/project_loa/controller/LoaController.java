@@ -31,11 +31,15 @@ public class LoaController {
         List<Cardeffect2VO> cardeffectlist = new ArrayList<Cardeffect2VO>();
         List<Item2VO> items = new ArrayList<Item2VO>();
         List<AvatarVO> avatarList = new ArrayList<AvatarVO>();
+        List<Gem2VO> gemList = new ArrayList<Gem2VO>();
+        List<GemEffect2VO> gemEffectList = new ArrayList<GemEffect2VO>();
         String str = null;
         ProfileVO profile = service.Profile(userid);
         JSONArray equip_array = service.Equipment(userid);
         CardsetVO cards = service.Cards(userid);
         JSONArray avatar_array = service.Avatars(userid);
+        GemsVO gems = service.Gems(userid);
+        Gems2VO gems2VO = new Gems2VO();
 
         profile2.setCharacterName(profile.getCharacterName());
         profile2.setCharacterImage(profile.getCharacterImage());
@@ -99,16 +103,47 @@ public class LoaController {
             Cardeffect2VO cardeffect = new Cardeffect2VO();
             cardeffect2 = cards.getEffects().get(i-1);
             cardeffect.setIndex(cardeffect2.getIndex());
-
-            for (int y = 1; y <= cards.getEffects().get(i-1).getItems().size(); y++){
-                Item2VO item = new Item2VO();
-                item.setName(cardeffect2.getItems().get(y-1).getName());
-                item.setDescription(cardeffect2.getItems().get(y-1).getDescription());
-                items.add(y-1,item);
+            if(cardeffect2.getItems().size() == 0){
+                items = null;
+            } else{
+                for (int y = 1; y <= cards.getEffects().get(i-1).getItems().size(); y++){
+                    Item2VO item = new Item2VO();
+                    item.setName(cardeffect2.getItems().get(y-1).getName());
+                    item.setDescription(cardeffect2.getItems().get(y-1).getDescription());
+                    items.add(y-1,item);
+               }
             }
             cardeffect.setItems(items);
             cardeffectlist.add(i-1,cardeffect);
         }
+
+        for (int i = 1; i <= gems.getGems().size(); i++){
+            GemVO gem2;
+            Gem2VO gem = new Gem2VO();
+            gem2 = gems.getGems().get(i-1);
+            gem.setName(gem2.getName());
+            gem.setIcon(gem2.getIcon());
+            gem.setGrade(gem2.getGrade());
+            gem.setTooltip(gem2.getTooltip());
+            gem.setLevel(gem2.getLevel());
+            gem.setSlot(gem2.getSlot());
+            gemList.add(i-1,gem);
+        }
+
+        for(int i = 1; i <= gems.getEffects().size(); i++){
+            GemEffectVO gemEffect2;
+            GemEffect2VO gemEffect = new GemEffect2VO();
+            gemEffect2 = gems.getEffects().get(i-1);
+            gemEffect.setGemSlot(gemEffect2.getGemSlot());
+            gemEffect.setName(gemEffect2.getName());
+            gemEffect.setIcon(gemEffect2.getIcon());
+            gemEffect.setTooltip(gemEffect2.getTooltip());
+            gemEffect.setDescription(gemEffect2.getDescription());
+            gemEffectList.add(i-1,gemEffect);
+        }
+        gems2VO.setGems(gemList);
+        gems2VO.setEffects(gemEffectList);
+
 
         model.addAttribute("profile", profile2);
         model.addAttribute("statlist",statlist);
@@ -117,6 +152,7 @@ public class LoaController {
         model.addAttribute("cardset",cardlist);
         model.addAttribute("cardeffect",cardeffectlist);
         model.addAttribute("avatar",avatarList);
+        model.addAttribute("gemlist",gems2VO);
         return "main/search";
     }
 }
