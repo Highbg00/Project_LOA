@@ -16,6 +16,9 @@ public class Member extends BaseEntity{
     private String id;
 
     @Column(length = 50)
+    private String name;
+
+    @Column(length = 50)
     private String naver;
 
     @Column(length = 50)
@@ -39,5 +42,7 @@ public class Member extends BaseEntity{
     @Column(length = 40)
     private String birth;
 
+    @Column(length = 40)
+    private String  tel;
 
 }

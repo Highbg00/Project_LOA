@@ -116,33 +116,39 @@ public class LoaController {
             cardeffect.setItems(items);
             cardeffectlist.add(i-1,cardeffect);
         }
+        if(gems == null){
 
-        for (int i = 1; i <= gems.getGems().size(); i++){
-            GemVO gem2;
-            Gem2VO gem = new Gem2VO();
-            gem2 = gems.getGems().get(i-1);
-            gem.setName(gem2.getName());
-            gem.setIcon(gem2.getIcon());
-            gem.setGrade(gem2.getGrade());
-            gem.setTooltip(gem2.getTooltip());
-            gem.setLevel(gem2.getLevel());
-            gem.setSlot(gem2.getSlot());
-            gemList.add(i-1,gem);
+        } else {
+
+            for (int i = 1; i <= gems.getGems().size(); i++) {
+                GemVO gem2;
+                Gem2VO gem = new Gem2VO();
+                gem2 = gems.getGems().get(i - 1);
+                gem.setName(gem2.getName());
+                gem.setIcon(gem2.getIcon());
+                gem.setGrade(gem2.getGrade());
+                gem.setTooltip(gem2.getTooltip());
+                gem.setLevel(gem2.getLevel());
+                gem.setSlot(gem2.getSlot());
+                gemList.add(i - 1, gem);
+            }
+
+            for(int i = 1; i <= gems.getEffects().size(); i++){
+                GemEffectVO gemEffect2;
+                GemEffect2VO gemEffect = new GemEffect2VO();
+                gemEffect2 = gems.getEffects().get(i-1);
+                gemEffect.setGemSlot(gemEffect2.getGemSlot());
+                gemEffect.setName(gemEffect2.getName());
+                gemEffect.setIcon(gemEffect2.getIcon());
+                gemEffect.setTooltip(gemEffect2.getTooltip());
+                gemEffect.setDescription(gemEffect2.getDescription());
+                gemEffectList.add(i-1,gemEffect);
+            }
+
+            gems2VO.setGems(gemList);
+            gems2VO.setEffects(gemEffectList);
         }
 
-        for(int i = 1; i <= gems.getEffects().size(); i++){
-            GemEffectVO gemEffect2;
-            GemEffect2VO gemEffect = new GemEffect2VO();
-            gemEffect2 = gems.getEffects().get(i-1);
-            gemEffect.setGemSlot(gemEffect2.getGemSlot());
-            gemEffect.setName(gemEffect2.getName());
-            gemEffect.setIcon(gemEffect2.getIcon());
-            gemEffect.setTooltip(gemEffect2.getTooltip());
-            gemEffect.setDescription(gemEffect2.getDescription());
-            gemEffectList.add(i-1,gemEffect);
-        }
-        gems2VO.setGems(gemList);
-        gems2VO.setEffects(gemEffectList);
 
 
         model.addAttribute("profile", profile2);

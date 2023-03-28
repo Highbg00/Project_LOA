@@ -101,7 +101,7 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-<script type="text/javascript" src="js/join-check.js"></script>
+<script type="text/javascript" src="resources/js/join-check.js"></script>
 <script>
 
     // 회원가입 처리

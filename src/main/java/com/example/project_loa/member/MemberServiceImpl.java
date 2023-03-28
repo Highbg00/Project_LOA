@@ -13,12 +13,12 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public boolean member_join(MemberVO vo) {
-        return dao.member_join(vo);
+        return dao.member_join(vo) == 1 ? true : false;
     }
 
     @Override
     public MemberVO member_login(HashMap<String, String> map) {
-        return null;
+        return dao.member_login(map);
     }
 
     @Override
@@ -33,21 +33,21 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public boolean member_id_check(String id) {
-        return false;
+        return dao.member_id_check(id) == 0 ? true : false;
     }
 
     @Override
     public boolean member_social_email(MemberVO vo) {
-        return false;
+        return dao.social_email(vo) == 0 ? false : true ;
     }
 
     @Override
     public boolean member_social_insert(MemberVO vo) {
-        return false;
+        return dao.social_insert(vo) == 0 ? false : true;
     }
 
     @Override
     public boolean member_social_update(MemberVO vo) {
-        return false;
+        return dao.social_update(vo) == 0 ? false : true;
     }
 }

@@ -35,7 +35,7 @@
             <c:if test="${ !empty loginInfo }">
                 <ul>
                     <li>
-                        <strong>${loginInfo.member_id }</strong>님
+                        <strong>${loginInfo.name }</strong>님
                     </li>
                     <li>
                         <a class='btn-fill' href='logout'>로그아웃</a>
