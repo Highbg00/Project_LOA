@@ -96,7 +96,7 @@ public class MemberController {
             , @RequestParam(required = false) String error, HttpSession session ) {
 
         if ( !state.equals(session.getAttribute("state")) || error != null ) {
-            return "redirect:/";	// 메인 페이지로 이동
+            return "redirect:/";
         }
 
         StringBuffer url = new StringBuffer("https://nid.naver.com/oauth2.0/token?grant_type=authorization_code");
@@ -130,29 +130,14 @@ public class MemberController {
             else
                 service.member_social_insert(vo);
 
-            // vo 에 담은 데이터를 session 의 loginInfo 에 담음
+
             session.setAttribute("loginInfo", vo);
         }
-
-//		{
-//			"resultcode": "00",
-//			"message": "success",
-//			"response": {
-//			    "email": "openapi@naver.com",
-//			    "nickname": "OpenAPI",
-//			    "profile_image": "https://ssl.pstatic.net/static/pwe/address/nodata_33x33.gif",
-//			    "age": "40-49",
-//			    "gender": "F",
-//			    "id": "32742776",
-//			    "name": "오픈 API",
-//			    "birthday": "10-01"
-//			}
-//		}
 
         return "redirect:/";
     }
 
-    // 카카오 로그인 요청
+
     @RequestMapping("/kakaoLogin")
     public String kakaoLogin (HttpSession session) {
 
@@ -175,13 +160,6 @@ public class MemberController {
         }
 
 
-        // 접근 토근발급 요청 : 토큰받기 (Sample - Request)
-//		curl -v -X POST "https://kauth.kakao.com/oauth/token" \
-//		 -H "Content-Type: application/x-www-form-urlencoded" \
-//		 -d "grant_type=authorization_code" \
-//		 -d "client_id=${REST_API_KEY}" \
-//		 --data-urlencode "redirect_uri=${REDIRECT_URI}" \
-//		 -d "code=${AUTHORIZE_CODE}"
 
         StringBuffer url = new StringBuffer("https://kauth.kakao.com/oauth/token?grant_type=authorization_code");
         url.append("&client_id=").append(kakao_client_id);
@@ -198,7 +176,7 @@ public class MemberController {
 
         json = new JSONObject(common.requestAPI(url, type + " " + token));
 
-        if (! json.isEmpty() ) {	// json 안에 값이 있다면.. 저장처리..
+        if (! json.isEmpty() ) {
             MemberVO vo = new MemberVO();
             vo.setSocial_type("kakao");
             vo.setId(json.get("id").toString() );
@@ -217,39 +195,6 @@ public class MemberController {
 
             session.setAttribute("loginInfo", vo);
         }
-
-//		{
-//		    "id":123456789,
-//		    "kakao_account": {
-//		        "profile_needs_agreement": false,
-//		        "profile": {
-//		            "nickname": "홍길동",
-//		            "thumbnail_image_url": "http://yyy.kakao.com/.../img_110x110.jpg",
-//		            "profile_image_url": "http://yyy.kakao.com/dn/.../img_640x640.jpg",
-//		            "is_default_image":false
-//		        },
-//		        "name_needs_agreement":false,
-//		        "name":"홍길동",
-//		        "email_needs_agreement":false,
-//		        "is_email_valid": true,
-//		        "is_email_verified": true,
-//		        "email": "sample@sample.com",
-//		        "age_range_needs_agreement":false,
-//		        "age_range":"20~29",
-//		        "birthday_needs_agreement":false,
-//		        "birthday":"1130",
-//		        "gender_needs_agreement":false,
-//		        "gender":"female"
-//		    },
-//		    "properties":{
-//		        "nickname":"홍길동카톡",
-//		        "thumbnail_image":"http://xxx.kakao.co.kr/.../aaa.jpg",
-//		        "profile_image":"http://xxx.kakao.co.kr/.../bbb.jpg",
-//		        "custom_field1":"23",
-//		        "custom_field2":"여"
-//		        ...
-//		    }
-//		}
 
         return "redirect:/calendar.do";
     }

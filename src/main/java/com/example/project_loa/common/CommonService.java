@@ -129,7 +129,7 @@ public class CommonService {
 				br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "utf-8"));
 			}
 			String inputLine;
-			StringBuffer res = new StringBuffer();			
+			StringBuffer res = new StringBuffer();
 			while ((inputLine = br.readLine()) != null) {
 				res.append(inputLine);
 			}
