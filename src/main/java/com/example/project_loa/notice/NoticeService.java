@@ -10,7 +10,7 @@ public interface NoticeService {
 	
 	List<NoticeVO> notice_list();
 	
-	NoticePage notice_totallist(NoticePage page);
+	NoticePage notice_list(NoticePage page);
 	
 	NoticeVO notice_detail(int id);
 	void notice_update(NoticeVO vo);

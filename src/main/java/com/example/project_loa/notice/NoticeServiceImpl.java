@@ -42,8 +42,14 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public NoticePage notice_totallist(NoticePage page) {
-		return dao.notice_totallist(page);
+	public NoticePage notice_list(NoticePage page) {
+		int pagecnt = dao.notice_totallist(page);
+		page.setTotalList(pagecnt);
+
+		List<NoticeVO> list = dao.notice_list(page);
+		page.setList(list);
+
+		return page;
 	}
 
 	@Override

@@ -10,6 +10,8 @@ import java.util.List;
 public interface NoticeRepository {
     void notice_insert(NoticeVO vo);
 
+    List<NoticeVO> notice_list(NoticePage page);
+
     List<NoticeVO> notice_list();
 
     NoticeVO notice_detail(int id);
@@ -20,7 +22,7 @@ public interface NoticeRepository {
 
     void notice_read(int id);
 
-    NoticePage notice_totallist(NoticePage page);
+    int notice_totallist(NoticePage page);
 
     void notice_reply_insert(NoticeVO vo);
 }

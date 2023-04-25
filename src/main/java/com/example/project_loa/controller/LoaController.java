@@ -3,7 +3,6 @@ package com.example.project_loa.controller;
 
 import com.example.project_loa.loa.*;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
