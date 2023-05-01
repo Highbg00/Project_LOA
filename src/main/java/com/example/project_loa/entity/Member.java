@@ -1,6 +1,7 @@
 package com.example.project_loa.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -45,4 +46,7 @@ public class Member extends BaseEntity{
     @Column(length = 40)
     private String  tel;
 
+    @Column(length = 40)
+    @ColumnDefault("N")
+    private String admin;
 }

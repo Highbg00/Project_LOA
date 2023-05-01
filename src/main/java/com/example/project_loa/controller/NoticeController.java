@@ -144,14 +144,6 @@ public class NoticeController {
     public String list(HttpSession session, @RequestParam(defaultValue = "1")
     int curPage, Model model, String search, String keyword) {
 
-        // 공지글 처리 중 임의로 로그인해 두기 (admin) - 나중에 삭제할 것
-//		HashMap<String, String> map = new HashMap<String, String>();
-//		map.put("id", "hanul");
-//		map.put("pw", "hanul");
-//
-//		session.setAttribute("loginInfo", member.member_login(map));
-
-
         session.setAttribute("category", "no");
 
         page.setCurPage(curPage);

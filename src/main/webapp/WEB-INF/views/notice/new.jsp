@@ -4,14 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src='js/file_check.js'></script>
+<script type="text/javascript" src='/resources/js/file_check.js'></script>
 </head>
 <body>
 <h3>신규 공지글</h3>
-<!-- 파일을 첨부하여 submit() 할 경우
-	1. method 는 post 로 지정
-	2. form에 반드시 enctype='multipart/form-data' 지정
- -->
 <form action="insert.no" method="post" enctype="multipart/form-data">
 	<table>
 		<tr>
@@ -42,7 +38,7 @@
 	</table>
 </form>
 <div class='btnSet'>
-	<a class='btn-fill' onclick=" if( emptyCheck() ) $('form').submit()">저장하기</a>
+	<a class='btn-fill' onclick="if( emptyCheck() ) $('form').submit()">저장하기</a>
 	<a class='btn-empty' href='list.no'>취소</a>
 </div>
 </body>
