@@ -14,7 +14,6 @@
 
 	<div id = 'list-top'>
 		<div>
-			<!-- 항목별 검색 처리 부분 -->
 			<ul>
 				<li>
 					<select name='search' class='w-px90'>
@@ -23,18 +22,13 @@
 						<option value="content" ${page.search eq 'content' ? 'selected' : '' }>내용</option>
 						<option value="writer" ${page.search eq 'writer' ? 'selected' : '' }>작성자</option>
 					</select>				
-				</li>		
-				<!-- 검색 키워드를 입력할 input 태그  -->
+				</li>
 				<li><input type="text" name='keyword' value="${page.keyword }" class='w-px300' /></li>
-				<!-- 검색 버튼 생성 -->
 				<li><a class='btn-fill' onclick="$('form').submit()">검색</a></li>
 			</ul>
 		
 		
 			<ul>
-				<!-- 관리자로 로그인된 경우만 글쓰기 가능 -->
-				<!-- 로그인 시 정보를 담고 있는 session.setAttribute("loginInfo", vo);
-					 을 통해 admin 값을 가져와 비교 -->
 				<c:if test="${loginInfo.admin eq 'Y' }">	 
 					<li><a class='btn-fill' href='new.no'>글쓰기</a></li>
 				</c:if>
@@ -69,7 +63,6 @@
 </table>
 <div class='btnSet'>
 	<jsp:include page="/WEB-INF/tiles/layout/page.jsp" />
-	<!-- jsp 표준 include를 사용하여 설정 -->
 </div>
 </body>
 </html>

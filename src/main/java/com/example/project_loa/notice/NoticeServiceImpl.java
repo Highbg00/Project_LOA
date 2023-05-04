@@ -42,6 +42,11 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
+	public List<NoticeReplyVO> reply_list(int id) {
+		return dao.reply_list(id);
+	}
+
+	@Override
 	public NoticePage notice_list(NoticePage page) {
 		int pagecnt = dao.notice_totallist(page);
 		page.setTotalList(pagecnt);
@@ -55,6 +60,16 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void notice_reply_insert(NoticeVO vo) {
 		dao.notice_reply_insert(vo);
+	}
+
+	@Override
+	public void reply_insert(NoticeReplyVO vo) {
+		dao.reply_insert(vo);
+	}
+
+	@Override
+	public void notice_replycnt_modify(int notice_id) {
+		dao.notice_replycnt_modify(notice_id);
 	}
 
 }

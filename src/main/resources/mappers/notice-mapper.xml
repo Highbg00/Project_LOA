@@ -7,24 +7,21 @@
 
 <insert id="notice_reply_insert">
 
+	<![CDATA[
+		{
+			call declare
+			begin
+				update notice set step = step +1 where root = #{root} and step > #{step};
 
-<![CDATA[
-	{
-		call declare
-		begin
-			update notice set step = step +1 where root = #{root} and step > #{step};
-			         
-			insert into notice (id, title, content, writer, filename, filepath, root, step, indent )
-			values (NEXTVAL(seq_notice), #{title}, #{content}, #{writer},
-					#{filename, jdbcType=VARCHAR}, #{filepath, jdbcType=VARCHAR}, 
-					#{root}, #{step}+1, #{indent}+1);
-		end
-	}
-]]>
+				insert into notice (id, title, content, writer, filename, filepath, root, step, indent )
+				values (NEXTVAL(seq_notice), #{title}, #{content}, #{writer},
+						#{filename, jdbcType=VARCHAR}, #{filepath, jdbcType=VARCHAR},
+						#{root}, #{step}+1, #{indent}+1);
+			end
+		}
+	]]>
+
 </insert>
-
-
-
 
 
 <update id="notice_update">
@@ -64,7 +61,6 @@
 
 
 <sql id="where_search">
-
 	<if test="search == 'title' or search == 'content'">
 		where ${search} like '%'||#{keyword}||'%'	
 	</if>
@@ -98,6 +94,26 @@
 	WHERE no BETWEEN #{beginList} AND #{endList};
 </select>
 
+<insert id="reply_insert">
+	insert into reply (reply_id, notice_id, step, content, writer, name)
+	values (NEXTVAL(), #{notice_id}, #{step}, #{content}, #{writer}, #{name});
+</insert>
 
-  
+<select id="reply_list" resultType="com.example.project_loa.notice.NoticeReplyVO">
+	select *
+	from reply
+	where notice_id = #{notice_id};
+</select>
+
+<update id="notice_replycnt_modify">
+	update notice set replycnt = <include refid="notice_replycnt"/>
+	where id = #{notice_id};
+</update>
+
+<select id="notice_relpycnt" resultType="integer">
+	select count(*)
+	from reply
+	where notice_id = #{notice_id};
+</select>
+
 </mapper>

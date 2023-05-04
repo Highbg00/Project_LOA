@@ -48,7 +48,7 @@ img.social {
 
 </head>
 <body>
-<!-- <h3>로그인 페이지</h3> -->
+
 <div style="width: 700px; border: 1px solid #ccc;" class="center">
 	<div id="login">
 		<div>
@@ -90,7 +90,7 @@ function go_login() {
 		return;
 	}
 	
-	$.ajax({  // login을 위한 ajax 통신 설정
+	$.ajax({
 		url : 'memberLogin'
 		, data : {id:$('#userid').val(), pw:$('#userpw').val()}
 		, success : function ( response ) {

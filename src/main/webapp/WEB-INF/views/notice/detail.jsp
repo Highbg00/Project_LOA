@@ -31,27 +31,46 @@
 	<tr>
 		<th>첨부파일</th>
 		<td class='left' colspan="5">${vo.filename }
-			<c:if test="${not empty vo.filename }"> <!-- 첨부 파일이 없지 않으면 아이콘 표시  -->		
+			<c:if test="${not empty vo.filename }">
 				<a href='download.no?id=${vo.id }'><i class="fa-solid fa-download"></i></a>
 			</c:if>
 		</td>
 	</tr>
+	<tr>
+		<td>댓글</td>
+	</tr>
+	<c:forEach items="${replylist}" var="reply">
+		<tr>
+			<th>${reply.writer}</th>
+			<td>${reply.content}</td>
+			<c:if test="${loginInfo.id eq reply.writer}">
+				<td><a class="btn-fill" href="replymodify.no?id=${reply.reply_id}">수정</a>
+					<a class="btn-fill" href="replydelete.no?id=${reply.reply_id}">삭제</a></td>
+			</c:if>
+		</tr>
+	</c:forEach>
+
+	<form action="replyinsert.no" method="post" enctype="multipart/form-data">
+		<input type="hidden" name='notice_id' value="${vo.id} }">
+		<input type="hidden" name='notice_id' value="${vo.id} }"> <!-- 댓글 순서용 댓글 갯수 넣는 곳 insert 구문에서 +1씩 추가할 예정 -->
+		<tr>
+			<th>댓글 작성</th>
+			<td><textarea name='content' title='내용' class='chk' ></textarea></td>
+			<td><a class='btn-fill' onclick="if( emptyCheck() ) $('form').submit()">작성하기</a></td>
+		</tr>
+	</form>
+
 </table>
 <div class='btnSet'>
 	<a class='btn-fill' 
 		href='list.no?curPage=${page.curPage }&search=${page.search}&keyword=${page.keyword}'>목록으로</a>
-		<!-- 목록 버튼 클릭시 현재 선택한 페이지 값과 검색 항목 그리고 키워드를 가진 상태에서
-			 리스트(목록) 화면으로 이동 -->
-			 
-	<!-- 1. 관리자로 로그인 경우에만 수정, 삭제 버튼 표시
-	     2. 로그인한 사용자(관리자)가 쓴 글인 경우 -->
+
 	<c:if test="${loginInfo.id eq vo.writer }">
 		<a class='btn-fill' href='modify.no?id=${vo.id }'>수정</a>
-<%-- 		<a class='btn-fill' onclick=" if(confirm('정말 삭제?')) { href='delete.no?id=${vo.id}' }">삭제</a> --%>
+
 		<a class='btn-fill' onclick="notice_delete(${vo.id})">삭제</a>
 	</c:if>
-	
-	<!-- 로그인되어 있는 경우에만 답글 쓰기 가능 -->
+
 	<c:if test="${ ! empty loginInfo }">
 		<a class='btn-fill' href='reply.no?id=${vo.id }'>답글쓰기</a>
 	</c:if>	
@@ -63,15 +82,14 @@ function notice_delete(id) {
 			title: '정말 삭제 하시겠습니까?',
 			text: '다시 되돌릴 수 없습니다. 신중하세요.',
 			icon: 'warning',
-			showCancelButton: true, 		// cancel 버튼 보이기. 기본은 원래 없음
-			confirmButtonColor: '#3085d6', 	// confirm 버튼 색깔 지정
-			cancelButtonColor: '#d33', 	// cancel 버튼 색깔 지정
-			confirmButtonText: '승인', 	// confirm 버튼 텍스트 지정
-			cancelButtonText: '취소', 		// cancel 버튼 텍스트 지정
-			reverseButtons: true, 		// 버튼 순서 거꾸로
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '승인',
+			cancelButtonText: '취소',
+			reverseButtons: true,
 		}).then(result => {
-			// 만약 Promise리턴을 받으면,
-			if (result.isConfirmed) { 		// 만약 모달창에서 confirm 버튼을 눌렀다면
+			if (result.isConfirmed) {
 				location.href='delete.no?id=' + id;
 			}
 	}); 
@@ -81,18 +99,3 @@ function notice_delete(id) {
 
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -31,7 +31,7 @@
 		</td>
 	</tr>
 </table>
-<input type="hidden" name="attach" />	<!-- 첨부 파일 저장 시 사용 -->
+<input type="hidden" name="attach" />
 
 
 </form>

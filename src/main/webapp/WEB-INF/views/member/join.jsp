@@ -104,36 +104,31 @@
 <script type="text/javascript" src="resources/js/join-check.js"></script>
 <script>
 
-    // 회원가입 처리
     function go_join() {
-        if ($('[name=name]').val() == '') {	// 이름이 빈칸 이면
+        if ($('[name=name]').val() == '') {
             $('[name=name]').focus();
             return;
         }
 
-        // 중복확인 검사
-        if ($('[name=id]').hasClass('checked')) {	// 중복확인 검사를 했을 경우
+        if ($('[name=id]').hasClass('checked')) {
             if($('[name=id]').siblings('div').hasClass('invalid')) {
                 alert('회원가입불가!\n' + join.id.unUsable.desc);
                 $('[name=id]').focus();
                 return;
             }
-        } else{ 	// 중복확인을 안 했을 경우
+        } else{
             if ( !item_check($('[name=id]') )) return;
             else {
                 alert('회원가입불가!\n' + join.id.valid.desc);
-                // 사용할 수 있는 id여도 중복확인을 안 했으니 리턴 시킴
                 $('[name=id]').focus();
                 return;
             }
         }
 
-        // 비밀번호, 비밀번호 확인, 이메일 확인(검증) 필요
         if ( !item_check( $('[name=pw]') ))		return;
         if ( !item_check( $('[name=pw_ck]') )) 	return;
         if ( !item_check( $('[name=email]')))	return;
 
-        // 아이디, 비밀번호, 비밀번호 확인, 이메일 허용(valid) 상태(조건 통과)
         $('form').submit();
     }
 
@@ -150,12 +145,11 @@
 
     $('.chk').on('keyup', function (e) {
 
-        // id 입력 후 enter 를 누르면 아이디 중복확인 버튼 실행
 
         if ($(this).attr('name') == 'id') {
             if(e.keyCode == 13)	id_check();
         }
-        var data = join.tag_status( $(this) );	// 입력하고 있는 tag 의 값을 보낸 후 결과값 반환
+        var data = join.tag_status( $(this) );
         $(this).siblings('div').text(data.desc).removeClass().addClass(data.code);
 
     });
@@ -172,9 +166,8 @@
 
 
     $(function() {
-        // 나이 제한을 두기 위한 처리 (만 13세 이상만 회원가입을 할 수 있다면...)
-        var today = new Date();	// 오늘 날짜 선언 (today)
-        // 오늘 날짜의 연도 데이터를 뽑아 13년을 뺌. 월 그대로 유지, 일자는 오늘 날짜로부터 1일을 뺌
+
+        var today = new Date();
         var endDay = new Date( today.getFullYear() - 13, today.getMonth(), today.getDate() -1);
 
         $( "[name=birth]" ).datepicker({
@@ -184,7 +177,7 @@
             , changeYear : true
             , dateFormat : 'yy-mm-dd'
             , showMonthAfterYear : true
-            , maxDate: endDay  /* 달력에 나타날 최대 일자 지정 */
+            , maxDate: endDay
         });
 
 
@@ -196,7 +189,7 @@
         id_check();
     });
 
-    // id_check 함수 선언
+
     function id_check() {
         var $id = $('[name=id]');
 
@@ -206,14 +199,14 @@
             $id.focus();
             return;
         }
-        // DB에서 id 값을 json 형태로 가져와 중복 여부 확인
+
         $.ajax({
             url : 'id_check'
             , data : {id : $id.val()}
-            , success : function ( response ) { // true : 사용 가능 , false : 이미 사용 중
+            , success : function ( response ) {
                 var data = join.id_usable ( response );
                 $id.siblings('div').text(data.desc).removeClass().addClass(data.code);
-                $id.addClass('checked');		// class 에 'checked' 부여 (중복확인 여부)
+                $id.addClass('checked');
 
             }, error : function ( req, text ) {
                 alert (text + ':' + req.status);

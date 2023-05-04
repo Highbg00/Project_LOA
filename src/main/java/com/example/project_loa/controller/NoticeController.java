@@ -3,6 +3,7 @@ package com.example.project_loa.controller;
 import com.example.project_loa.common.CommonService;
 import com.example.project_loa.member.MemberVO;
 import com.example.project_loa.notice.NoticePage;
+import com.example.project_loa.notice.NoticeReplyVO;
 import com.example.project_loa.notice.NoticeServiceImpl;
 import com.example.project_loa.notice.NoticeVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,7 +115,7 @@ public class NoticeController {
 
         service.notice_read(id);
 
-
+        model.addAttribute("replylist", service.reply_list(id));
         model.addAttribute("vo", service.notice_detail(id));
         model.addAttribute("crlf", "\r\n");
 
@@ -150,7 +151,6 @@ public class NoticeController {
         page.setSearch(search);
         page.setKeyword(keyword);
 
-
         model.addAttribute("page", service.notice_list(page));
 
         return "notice/list";
@@ -159,5 +159,15 @@ public class NoticeController {
     @RequestMapping ("/new.no")
     public String notice() {
         return "notice/new";
+    }
+
+    @RequestMapping("/replyinsert.no")
+    public String reply_insert(NoticeReplyVO vo, HttpSession session){
+
+        vo.setWriter(((MemberVO) session.getAttribute("loginInfo")).getId() );
+
+        service.reply_insert(vo);
+        service.notice_replycnt_modify(vo.getNotice_id());
+        return "redirect:detail.no?id=" + vo.getNotice_id();
     }
 }

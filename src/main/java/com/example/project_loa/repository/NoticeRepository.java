@@ -1,6 +1,7 @@
 package com.example.project_loa.repository;
 
 import com.example.project_loa.notice.NoticePage;
+import com.example.project_loa.notice.NoticeReplyVO;
 import com.example.project_loa.notice.NoticeVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -25,4 +26,11 @@ public interface NoticeRepository {
     int notice_totallist(NoticePage page);
 
     void notice_reply_insert(NoticeVO vo);
+
+    List<NoticeReplyVO> reply_list(int id);
+
+    void reply_insert(NoticeReplyVO vo);
+
+    void notice_replycnt_modify(int notice_id);
+
 }

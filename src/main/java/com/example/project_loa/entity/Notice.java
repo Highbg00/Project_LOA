@@ -34,5 +34,4 @@ public class Notice extends BaseEntity{
     @Column(length = 500)
     private Date writedate;
 
-
 }
