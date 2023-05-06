@@ -20,9 +20,6 @@ public class Reply extends BaseEntity{
     private int notice_id;
 
     @Column(length = 500)
-    private int step;
-
-    @Column(length = 500)
     private String content;
 
     @Column(length = 50)

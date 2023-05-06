@@ -163,7 +163,6 @@ public class NoticeController {
 
     @RequestMapping("/replyinsert.no")
     public String reply_insert(NoticeReplyVO vo, HttpSession session){
-
         vo.setWriter(((MemberVO) session.getAttribute("loginInfo")).getId() );
 
         service.reply_insert(vo);

@@ -19,11 +19,11 @@ public class Notice extends BaseEntity{
     private int id;
 
     @Column(length = 500)
-    private int readcnt, root;
+    private int root;
 
     @Column(length = 500)
     @ColumnDefault("0")
-    private int step, indent;
+    private int replycnt, readcnt, step, indent;
 
     @Column(length = 300)
     private String title, writer, filename, filepath;

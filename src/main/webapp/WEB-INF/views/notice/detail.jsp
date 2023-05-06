@@ -37,12 +37,12 @@
 		</td>
 	</tr>
 	<tr>
-		<td>댓글</td>
+		<th colspan="6">댓글</th>
 	</tr>
 	<c:forEach items="${replylist}" var="reply">
 		<tr>
 			<th>${reply.writer}</th>
-			<td>${reply.content}</td>
+			<td colspan="4" class="left">${reply.content}</td>
 			<c:if test="${loginInfo.id eq reply.writer}">
 				<td><a class="btn-fill" href="replymodify.no?id=${reply.reply_id}">수정</a>
 					<a class="btn-fill" href="replydelete.no?id=${reply.reply_id}">삭제</a></td>
@@ -51,8 +51,7 @@
 	</c:forEach>
 
 	<form action="replyinsert.no" method="post" enctype="multipart/form-data">
-		<input type="hidden" name='notice_id' value="${vo.id} }">
-		<input type="hidden" name='notice_id' value="${vo.id} }"> <!-- 댓글 순서용 댓글 갯수 넣는 곳 insert 구문에서 +1씩 추가할 예정 -->
+		<input type="hidden" name='notice_id' value="${vo.id}">
 		<tr>
 			<th>댓글 작성</th>
 			<td><textarea name='content' title='내용' class='chk' ></textarea></td>

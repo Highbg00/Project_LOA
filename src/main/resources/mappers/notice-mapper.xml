@@ -91,29 +91,28 @@
 	FROM  (select * from notice  <include refid="where_search" />
 	order by root, step DESC) n
 	order by no DESC) AS DO
-	WHERE no BETWEEN #{beginList} AND #{endList};
+	WHERE no BETWEEN #{beginList} AND #{endList}
 </select>
 
 <insert id="reply_insert">
-	insert into reply (reply_id, notice_id, step, content, writer, name)
-	values (NEXTVAL(), #{notice_id}, #{step}, #{content}, #{writer}, #{name});
+	insert into reply (reply_id, notice_id, content, writer, name)
+	values (NEXTVAL(seq_reply), #{notice_id},  #{content}, #{writer}, #{name})
 </insert>
 
 <select id="reply_list" resultType="com.example.project_loa.notice.NoticeReplyVO">
 	select *
 	from reply
-	where notice_id = #{notice_id};
+	where notice_id = #{notice_id}
+	order by reply_id asc
 </select>
 
 <update id="notice_replycnt_modify">
-	update notice set replycnt = <include refid="notice_replycnt"/>
-	where id = #{notice_id};
+	update notice set replycnt = (	select count(*)
+									  from reply
+									  where notice_id = #{notice_id})
+	where id = #{notice_id}
 </update>
 
-<select id="notice_relpycnt" resultType="integer">
-	select count(*)
-	from reply
-	where notice_id = #{notice_id};
-</select>
+
 
 </mapper>
