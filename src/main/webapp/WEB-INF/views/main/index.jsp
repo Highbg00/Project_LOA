@@ -13,7 +13,7 @@
 <body>
 <form action="search" method="post">
     <div class="main_logo">
-        <img src="@{/img/logo.png}"/>
+        <img src="${path}/img/LogoMakr-86J7zG.png""/>
 
         <p style="margin-top: 50px;">
             <input type="text" placeholder="캐릭터명을 입력하십시오." name="userid"/>

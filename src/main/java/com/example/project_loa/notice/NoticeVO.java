@@ -6,7 +6,7 @@ import java.sql.Date;
 
 @Data
 public class NoticeVO {
-	private int id, readcnt, no, root, step, indent;
+	private int id, readcnt, no, root, step, indent, replycnt;
 	private String title, content, writer, name;
 	private Date writedate;
 	private String filename, filepath;

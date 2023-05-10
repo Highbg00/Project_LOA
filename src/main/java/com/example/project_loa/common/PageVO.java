@@ -2,18 +2,18 @@ package com.example.project_loa.common;
 
 public class PageVO {
 
-	int totalList;			// 총 글의 건수(DB에서 조회해 온 전체 글수)
-	int totalPage;			// 총 페이지 수
-	int totalBlock;			// 총 블럭 수
-	int pageList = 10;		// 페이지당 보여질 목록의 수
-	int blockPage = 10;		// 블럭당 보여질 페이지의 수
-	int curPage;			// 현재 페이지
-	int beginList, endList;	// 각 페이지에 보여질 시작 목록번호, 끝 목록번호
-	int curBlock;			// 현재 블럭
-	int beginPage, endPage;	// 각 블럭에 보여질 시작, 끝 페이지 번호
+	int totalList;
+	int totalPage;
+	int totalBlock;
+	int pageList = 10;
+	int blockPage = 10;
+	int curPage;
+	int beginList, endList;
+	int curBlock;
+	int beginPage, endPage;
 	
-	String search, keyword;	// 검색조건, 검색어
-	private String viewType = "list";	// 게시판 형태(기본 : 리스트형태)
+	String search, keyword;
+	private String viewType = "list";
 	
 	public String getViewType() {
 		return viewType;
@@ -43,39 +43,34 @@ public class PageVO {
 		return totalList;
 	}
 	
-	// 전체 페이지가 조회가 되면 페이지 처리를 할수 있기 때문에 
-	// 조회된 전체 페이지 수 값이 등록되는 단계에서 
-	// 페이지 처리에 관한 작업을 하면 되기에 totlaList setter 메소드에서 처리를 함.
+
 	public void setTotalList(int totalList) {
-		this.totalList = totalList;	// DB에서 총 글의 건수
-		// 총 페이지수(totalPage) : totalList / pageList 
+		this.totalList = totalList;
+
 		totalPage = totalList / pageList;
-		// 총 448건의 글을 페이지당  10건씩... 총 페이지수 44
-		// 대신 나머지가 발생하기 때문에 1페이지를 증가 해야 함. 
+
 		if ( totalList % pageList > 0) ++totalPage;
-		// totalPage = 45...
-		// 총 블럭수(totalBlock) : totalPage / blockPage
+
 		totalBlock = totalPage / blockPage;
 		if (totalPage % blockPage > 0) ++totalBlock;
 		
-		// 각 페이지의 끝 목록번호 : 총 목록수 - (현재 페이지번호-1) * 페이지당 보여질 목록수
+
 		endList = totalList - (curPage -1) * pageList;
 		
-		// 각 페이지의 시작 목록번호 : 끝 목록번호 - (페이지당 보여질 목록수 - 1)
+
 		beginList = endList - (pageList - 1);
 		
-		// 블럭번호(curBlock) : 페이지번호(curPage) / 블럭당 보여질 페이지수(blockPage)
+
 		curBlock = curPage / blockPage;
 		if ( curPage % blockPage > 0) ++curBlock;
 		
-		// 각 블럭의 끝 페이지번호 : 블럭번호 * 블럭당 보여질 페이지수
+
 		endPage = curBlock * blockPage;
 		
-		// 각 블럭의 시작 페이지번호 : 끝 페이지번호 - (블럭당 보여질 페이지수 - 1)
+
 		beginPage = endPage - (blockPage -1);
 		
-		// 마지막 블럭에서 끝 페이지번호가 총 페이지수보다 클 수 없으므로
-		// 총 페이지수를 끝 페이지번호로 한다.
+
 		if (endPage > totalPage) endPage = totalPage;
 	}
 	public int getTotalPage() {

@@ -16,13 +16,16 @@
         margin-left: 20px;
         padding-top: 10px;
     }
+    .replycnt{
+        color: #b0b0b0;
+    }
 </style>
 <header style="border-bottom: 1px solid #ccc; padding: 15px 0; text-align: left;">
     <div class="logo" style="width: 1920px;">
-        <a href="<c:url value="/"/>"><img src="@{/img/logo.png}"></a>
-        <a class="com" href="list.no">커뮤니티</a>
+        <a href="<c:url value="/"/>"><img src="${path}/img/LogoMakr-86J7zG.png"></a>
+        <a class="com" href="list.no">공지</a>
         <div style='position: absolute;right: 0; top: 24px; margin-right: 200px;'>
-            <!-- 로그인을 하지 않은 경우 -->
+
             <c:if test="${ empty loginInfo }">
                 <ul>
                     <li>
@@ -31,7 +34,7 @@
                     </li>
                 </ul>
             </c:if>
-            <!-- 로그인한 경우 -->
+
             <c:if test="${ !empty loginInfo }">
                 <ul>
                     <li>

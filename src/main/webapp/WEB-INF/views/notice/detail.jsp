@@ -54,7 +54,7 @@
 		<input type="hidden" name='notice_id' value="${vo.id}">
 		<tr>
 			<th>댓글 작성</th>
-			<td><textarea name='content' title='내용' class='chk' ></textarea></td>
+			<td colspan="4"><textarea class="reply-content" name='content' title='내용' class='chk' ></textarea></td>
 			<td><a class='btn-fill' onclick="if( emptyCheck() ) $('form').submit()">작성하기</a></td>
 		</tr>
 	</form>

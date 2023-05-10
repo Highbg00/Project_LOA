@@ -19,18 +19,22 @@ a:link, a:visited {
 	min-width: 1280px; min-height: 650px; height: 100%; padding : 20px 0;	
 }
 
+.reply-content {
+	min-width: 900px; min-height: 50px; height: 100%; padding : 20px 0;
+}
+
 .middle * {vertical-align: middle;}
 #preview { height: 36px; display: inline-block; }
 #preview { max-height: 34px;}
 img {
-	vertical-align: middle;		/* 세로축 가운데 정렬 */
+	vertical-align: middle;
 }
 
 table {
 	width: 80%;
 	margin: 0 auto;
 	border: 1px solid;
-	border-collapse: collapse;	/* 테두리 겹침 설정 collapse : 겹치지 않게 처리 */
+	border-collapse: collapse;
 }
 
 table tr { height: 46px; }
@@ -44,9 +48,7 @@ table th { background: #f6f6f6; }
 
 table tr td a:hover { font-weight: 700; color: red }
 
-/* table tr:hover td { */
-/* 	background: #ccc; */
-/* } */
+
 
 .btnSet { margin-top: 20px; }
 
@@ -56,7 +58,7 @@ a.btn-fill, a.btn-empty {
 	border: 1px solid #3367d6;
 	border-radius: 3px;
 	box-shadow: 2px 2px 3px;
-	       /* 오른쪽, 아래쪽, 번짐 정도 */
+
 }
 
 a.btn-fill {
@@ -157,7 +159,7 @@ ul.grid li div:nth-child(1) {
 	-webkit-box-orient : vertical;
 	}
 
-/* width 값을 class로 등록하여 관리 */
+
 .w-pct80 {width : 80%}
 .w-pct70 {width : 70%}
 .w-pct60 {width : 60%}

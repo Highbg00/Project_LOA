@@ -53,7 +53,7 @@
 				<c:forEach begin="1" end="${vo.indent }" var="i">			
 					${i eq vo.indent ? "<img src='imgs/re.gif' />" : "&nbsp;&nbsp;" }  
 				</c:forEach>
-				<a href='detail.no?id=${vo.id }'>${vo.title }</a>			
+				<a href='detail.no?id=${vo.id }'>${vo.title }<label class="replycnt">(${vo.replycnt})</label></a>
 			</td>
 			<td>${vo.name }</td>
 			<td>${vo.writedate }</td>

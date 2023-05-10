@@ -62,18 +62,18 @@
 
 <sql id="where_search">
 	<if test="search == 'title' or search == 'content'">
-		where ${search} like '%'||#{keyword}||'%'	
+		where ${search} like CONCAT ('%', #{keyword},'%')
 	</if>
 	
 
 	<if test="search == 'writer' ">
-		where writer in ( select id from member where name like '%'||#{keyword}||'%' )
+		where writer in ( select id from member where name like CONCAT ('%', #{keyword},'%') )
 	</if>
 	
 	<if test="search == 'all' ">
-		where title like '%'||#{keyword}||'%'
-		or content  like '%'||#{keyword}||'%'
-		or writer in ( select id from member where name like '%'||#{keyword}||'%' )	
+		where title like CONCAT ('%', #{keyword},'%')
+		or content  like CONCAT ('%', #{keyword},'%')
+		or writer in ( select id from member where name like CONCAT ('%', #{keyword},'%') )
 	</if>
 </sql>
 
@@ -107,7 +107,7 @@
 </select>
 
 <update id="notice_replycnt_modify">
-	update notice set replycnt = (	select count(*)
+	update notice set replycnt = (select count(*)
 									  from reply
 									  where notice_id = #{notice_id})
 	where id = #{notice_id}
