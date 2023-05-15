@@ -25,8 +25,6 @@ public interface NoticeRepository {
 
     int notice_totallist(NoticePage page);
 
-    void notice_reply_insert(NoticeVO vo);
-
     List<NoticeReplyVO> reply_list(int id);
 
     void reply_insert(NoticeReplyVO vo);

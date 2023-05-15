@@ -52,11 +52,11 @@ img.social {
 <div style="width: 700px; border: 1px solid #ccc;" class="center">
 	<div id="login">
 		<div>
-			<a href='<c:url value="/" />'><img src='imgs/clcd_logo.png' /></a>
+			<a href='<c:url value="/" />'><img src='${path}/img/LogoMakr-86J7zG.png' /></a>
 		</div>
 		<div>
-			<a href='naverLogin'><img src='imgs/naver_login.png' class='social' /></a>
-			<a href='kakaoLogin'><img src='imgs/kakao_login.png' class='social' /></a>
+			<a href='naverLogin'><img src='${path}/img/naver_login.png' class='social' /></a>
+			<a href='kakaoLogin'><img src='${path}/img/kakao_login.png' class='social' /></a>
 			<div style="width: 80%; margin: 25px auto; border:1px solid #ccc;"></div>
 			<input type="text" placeholder="아이디" id="userid" autofocus /><br/>
 			<input type="password" placeholder="비밀번호" id="userpw"

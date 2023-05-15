@@ -4,26 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.project_loa.repository.NoticeRepository">
 
-
-<insert id="notice_reply_insert">
-
-	<![CDATA[
-		{
-			call declare
-			begin
-				update notice set step = step +1 where root = #{root} and step > #{step};
-
-				insert into notice (id, title, content, writer, filename, filepath, root, step, indent )
-				values (NEXTVAL(seq_notice), #{title}, #{content}, #{writer},
-						#{filename, jdbcType=VARCHAR}, #{filepath, jdbcType=VARCHAR},
-						#{root}, #{step}+1, #{indent}+1);
-			end
-		}
-	]]>
-
-</insert>
-
-
 <update id="notice_update">
 	update notice set title=#{title}, content=#{content}
 		, filename = #{filename, jdbcType=VARCHAR}

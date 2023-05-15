@@ -6,8 +6,6 @@ public interface NoticeService {
 	
 	void notice_insert(NoticeVO vo);
 	
-	void notice_reply_insert(NoticeVO vo);
-	
 	List<NoticeVO> notice_list();
 	
 	NoticePage notice_list(NoticePage page);

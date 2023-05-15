@@ -63,16 +63,11 @@
 <div class='btnSet'>
 	<a class='btn-fill' 
 		href='list.no?curPage=${page.curPage }&search=${page.search}&keyword=${page.keyword}'>목록으로</a>
-
 	<c:if test="${loginInfo.id eq vo.writer }">
 		<a class='btn-fill' href='modify.no?id=${vo.id }'>수정</a>
 
 		<a class='btn-fill' onclick="notice_delete(${vo.id})">삭제</a>
 	</c:if>
-
-	<c:if test="${ ! empty loginInfo }">
-		<a class='btn-fill' href='reply.no?id=${vo.id }'>답글쓰기</a>
-	</c:if>	
 </div>
 </body>
 <script type="text/javascript">

@@ -23,17 +23,17 @@
 
 <select id="social_email" resultType="integer">
 	select count(*) from member
-	where ${social_type} = #{social_email}
+	where ${social_type} = #{email}
 </select>
 
 <insert id="social_insert">
 	insert into member (id, name, gender, ${social_type})
-	values (#{id}, #{name}, #{gender}, #{social_email})
+	values (#{id}, #{name}, #{gender}, #{email})
 </insert>
 
 <update id="social_update">
 	update member set name=#{name}, gender=#{gender}
-	where ${social_type} = #{social_email}
+	where ${social_type} = #{email}
 </update>
 
 </mapper>

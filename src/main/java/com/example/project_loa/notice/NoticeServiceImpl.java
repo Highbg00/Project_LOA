@@ -58,11 +58,6 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void notice_reply_insert(NoticeVO vo) {
-		dao.notice_reply_insert(vo);
-	}
-
-	@Override
 	public void reply_insert(NoticeReplyVO vo) {
 		dao.reply_insert(vo);
 	}

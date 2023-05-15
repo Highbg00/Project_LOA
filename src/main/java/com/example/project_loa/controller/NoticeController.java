@@ -24,17 +24,6 @@ public class NoticeController {
     @Autowired private NoticePage page;
     @Autowired private CommonService common;
 
-    @RequestMapping("/reply_insert.no")
-    public String reply_insert(NoticeVO vo, MultipartFile file, HttpSession session){
-        if( ! file.isEmpty()){
-            vo.setFilename(file.getOriginalFilename());
-            vo.setFilepath( common.fileUpload("notice", file, session));
-        }
-
-        vo.setWriter(((MemberVO)session.getAttribute("loginInfo")).getId());
-        service.notice_reply_insert(vo);
-        return "redirect:list.no";
-    }
 
     @RequestMapping ("/reply.no")
     public String reply(int id, Model model) {
