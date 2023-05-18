@@ -39,15 +39,19 @@
 	<tr>
 		<th colspan="6">댓글</th>
 	</tr>
-	<c:forEach items="${replylist}" var="reply">
-		<tr>
-			<th>${reply.writer}</th>
-			<td colspan="4" class="left">${reply.content}</td>
-			<c:if test="${loginInfo.id eq reply.writer}">
-				<td><a class="btn-fill" href="replymodify.no?id=${reply.reply_id}">수정</a>
-					<a class="btn-fill" href="replydelete.no?id=${reply.reply_id}">삭제</a></td>
-			</c:if>
-		</tr>
+	<c:forEach items="${replylist}" var="reply" varStatus="status">
+		<form action="replymodify.no" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="reply_id" value="${reply.reply_id}">
+			<tr>
+				<th>${reply.writer}</th>
+				<td colspan="4" class="left"><span id="display_reply${status.count}">${reply.content}</span><input type="text" id="reply-content-modify${status.count}" name="content" value="${reply.content}" style="display: none;"></td>
+				<c:if test="${loginInfo.id eq reply.writer}">
+					<td><a id="reply_modify${status.count}" class="btn-fill" onclick="reply_modify(${status.count})">수정</a>
+						<a id="reply_modify_comp${status.count}" class="btn-fill" href="" style="display: none;">수정 완료</a>
+						<a class="btn-fill" href="replydelete.no?id=${reply.reply_id}">삭제</a></td>
+				</c:if>
+			</tr>
+		</form>
 	</c:forEach>
 
 	<form action="replyinsert.no" method="post" enctype="multipart/form-data">
@@ -89,6 +93,12 @@ function notice_delete(id) {
 	}); 
 	
 	
+}
+function reply_modify(count){
+	document.getElementById('display_reply'+count).style.display = 'none';
+	document.getElementById('reply-content-modify'+count).style.display = 'block';
+	document.getElementById('reply_modify'+count).style.display = 'none';
+	document.getElementById('reply_modify_comp'+count).style.display = 'block';
 }
 
 </script>

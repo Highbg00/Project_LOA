@@ -32,7 +32,7 @@ public class LoaController {
         List<AvatarVO> avatarList = new ArrayList<AvatarVO>();
         List<Gem2VO> gemList = new ArrayList<Gem2VO>();
         List<GemEffect2VO> gemEffectList = new ArrayList<GemEffect2VO>();
-        String str = null;
+
         ProfileVO profile = service.Profile(userid);
         JSONArray equip_array = service.Equipment(userid);
         CardsetVO cards = service.Cards(userid);

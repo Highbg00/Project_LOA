@@ -39,8 +39,6 @@
                 <ul>
                     <li>
                         <strong>${loginInfo.name }</strong>님
-                    </li>
-                    <li>
                         <a class='btn-fill' href='logout'>로그아웃</a>
                     </li>
                 </ul>
