@@ -160,10 +160,9 @@ public class NoticeController {
     }
 
     @RequestMapping("/replymodify.no")
-    public String reply_modify(NoticeReplyVO vo, HttpSession session, int id){
-        vo.setWriter(((MemberVO) session.getAttribute("loginInfo")).getId() );
+    public String reply_modify(NoticeReplyVO vo){
 
-        service.reply_insert(vo);
+        service.reply_modify(vo);
         service.notice_replycnt_modify(vo.getNotice_id());
         return "redirect:detail.no?id=" + vo.getNotice_id();
     }

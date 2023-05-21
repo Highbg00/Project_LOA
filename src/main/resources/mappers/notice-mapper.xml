@@ -93,6 +93,9 @@
 	where id = #{notice_id}
 </update>
 
-
+<update id="reply_modify">
+	update reply set content = #{content}
+	where reply_id = #{reply_id}
+</update>
 
 </mapper>

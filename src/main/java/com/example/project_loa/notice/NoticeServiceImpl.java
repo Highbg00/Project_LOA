@@ -63,6 +63,11 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
+	public void reply_modify(NoticeReplyVO vo) {
+		dao.reply_modify(vo);
+	}
+
+	@Override
 	public void notice_replycnt_modify(int notice_id) {
 		dao.notice_replycnt_modify(notice_id);
 	}

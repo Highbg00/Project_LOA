@@ -29,6 +29,8 @@ public interface NoticeRepository {
 
     void reply_insert(NoticeReplyVO vo);
 
+    void reply_modify(NoticeReplyVO vo);
+
     void notice_replycnt_modify(int notice_id);
 
 }

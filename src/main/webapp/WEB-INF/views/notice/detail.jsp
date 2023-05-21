@@ -40,15 +40,17 @@
 		<th colspan="6">댓글</th>
 	</tr>
 	<c:forEach items="${replylist}" var="reply" varStatus="status">
-		<form action="replymodify.no" method="post" enctype="multipart/form-data">
+		<form id="reply${status.count}" action="replymodify.no" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="reply_id" value="${reply.reply_id}">
+			<input type="hidden" name='notice_id' value="${reply.notice_id}">
 			<tr>
 				<th>${reply.writer}</th>
 				<td colspan="4" class="left"><span id="display_reply${status.count}">${reply.content}</span><input type="text" id="reply-content-modify${status.count}" name="content" value="${reply.content}" style="display: none;"></td>
 				<c:if test="${loginInfo.id eq reply.writer}">
 					<td><a id="reply_modify${status.count}" class="btn-fill" onclick="reply_modify(${status.count})">수정</a>
-						<a id="reply_modify_comp${status.count}" class="btn-fill" href="" style="display: none;">수정 완료</a>
-						<a class="btn-fill" href="replydelete.no?id=${reply.reply_id}">삭제</a></td>
+						<a id="reply_modify_comp${status.count}" class="btn-fill" onclick="if( emptyCheck() ) document.getElementById('reply${status.count}').submit()" style="display: none;">수정 완료</a>
+						<!--<button type="submit" id="reply_modify_comp${status.count}" class="btn-fill" style="display: none;" value="수정 완료"/>-->
+						<a class="btn-fill" href="replydelete.no?id=${reply.reply_id}" style="display: inline-block">삭제</a></td>
 				</c:if>
 			</tr>
 		</form>
@@ -98,7 +100,7 @@ function reply_modify(count){
 	document.getElementById('display_reply'+count).style.display = 'none';
 	document.getElementById('reply-content-modify'+count).style.display = 'block';
 	document.getElementById('reply_modify'+count).style.display = 'none';
-	document.getElementById('reply_modify_comp'+count).style.display = 'block';
+	document.getElementById('reply_modify_comp'+count).style.display = 'inline-block';
 }
 
 </script>
