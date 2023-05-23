@@ -49,8 +49,7 @@
 				<c:if test="${loginInfo.id eq reply.writer}">
 					<td><a id="reply_modify${status.count}" class="btn-fill" onclick="reply_modify(${status.count})">수정</a>
 						<a id="reply_modify_comp${status.count}" class="btn-fill" onclick="if( emptyCheck() ) document.getElementById('reply${status.count}').submit()" style="display: none;">수정 완료</a>
-						<!--<button type="submit" id="reply_modify_comp${status.count}" class="btn-fill" style="display: none;" value="수정 완료"/>-->
-						<a class="btn-fill" href="replydelete.no?id=${reply.reply_id}" style="display: inline-block">삭제</a></td>
+						<a class="btn-fill" href="replydelete.no?reply_id=${reply.reply_id}&notice_id=${vo.id}" style="display: inline-block">삭제</a></td>
 				</c:if>
 			</tr>
 		</form>

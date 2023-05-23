@@ -31,6 +31,8 @@ public interface NoticeRepository {
 
     void reply_modify(NoticeReplyVO vo);
 
+    void reply_delete(int id);
+
     void notice_replycnt_modify(int notice_id);
 
 }

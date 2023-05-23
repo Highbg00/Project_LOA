@@ -166,4 +166,12 @@ public class NoticeController {
         service.notice_replycnt_modify(vo.getNotice_id());
         return "redirect:detail.no?id=" + vo.getNotice_id();
     }
+
+    @RequestMapping("/replydelete.no")
+    public String reply_delete(int reply_id,int notice_id){
+
+        service.reply_delete(reply_id);
+        service.notice_replycnt_modify(notice_id);
+        return "redirect:detail.no?id="+ notice_id;
+    }
 }

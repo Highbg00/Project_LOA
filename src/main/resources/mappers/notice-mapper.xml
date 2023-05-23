@@ -98,4 +98,9 @@
 	where reply_id = #{reply_id}
 </update>
 
+<delete id="reply_delete">
+	delete from reply
+	where reply_id = #{reply_id}
+</delete>
+
 </mapper>

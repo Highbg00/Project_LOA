@@ -24,6 +24,7 @@ public interface NoticeService {
 
 	void reply_modify(NoticeReplyVO vo);
 
-	void notice_replycnt_modify(int notice_id);
+	void reply_delete(int reply_id);
 
+	void notice_replycnt_modify(int notice_id);
 }

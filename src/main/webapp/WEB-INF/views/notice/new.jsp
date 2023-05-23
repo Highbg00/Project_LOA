@@ -26,7 +26,7 @@
 			<th>첨부파일</th>
 			<td class='left'>
 				<label>
-				<a><img src='imgs/select.png' class='file-img' /></a>
+				<a><img src='/img/select.png' class='file-img' /></a>
 				<input type="file" name="file" id='attach-file' />
 				</label>
 				<span id='file-name'></span>

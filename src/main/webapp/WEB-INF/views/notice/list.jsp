@@ -57,7 +57,7 @@
 			</td>
 			<td>${vo.name }</td>
 			<td>${vo.writedate }</td>
-			<td>${empty vo.filename ? '' : '<img src="imgs/attach.png" class="file-img" />' }</td>
+			<td>${empty vo.filename ? '' : '<img src="/img/attach.png" class="file-img" />' }</td>
 		</tr>
 	</c:forEach>
 </table>
